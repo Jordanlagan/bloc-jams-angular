@@ -28,18 +28,37 @@
             currentSong = song;
         };
 
+        /**
+        * @function playSong
+        * @desc Plays the currently paused song referenced by currentBuzzObject and sets song.playing to true
+        * @param {Object} song
+        */
+        var playSong = function(song) {
+            currentBuzzObject.play();
+            song.playing = true;
+        };
+
+        /**
+        * @function SongPlayer.play
+        * @desc Method that checks if the passed in song object is equal to the currently playing song, pausing it if so, and playing it and stopping the previous playing song if not
+        * @param {Object} song
+        */
         SongPlayer.play = function(song) {
             if (currentSong !== song) {
                 setSong(song);
-                currentBuzzObject.play();
-                song.playing = true;
+                playSong(song);
             } else if (currentSong === song) {
                 if (currentBuzzObject.isPaused()) {
-                    currentBuzzObject.play();
+                    playSong(song);
                 }
             }
         };
 
+        /**
+        * @function SongPlayer.pause
+        * @desc Method that pauses the currently playing song sets song.playing to false
+        * @param {Object} song
+        */
         SongPlayer.pause = function(song) {
             currentBuzzObject.pause();
             song.playing = false;
