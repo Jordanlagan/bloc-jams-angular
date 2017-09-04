@@ -80,6 +80,12 @@
         SongPlayer.volume = 70;
 
         /**
+        * @desc is the voluem muted?
+        * @type {Boolean}
+        */
+        SongPlayer.isMuted = false;
+
+        /**
         * @function SongPlayer.play
         * @desc Method that checks if the passed in song object is equal to the currently playing song, pausing it if so, and playing it and stopping the previous playing song if not
         * @param {Object} song
@@ -155,6 +161,17 @@
               }
               SongPlayer.volume = volume;
           };
+
+          /**
+           * @function toggleMute
+           * @desc toggle isMuted to true and false and toggle mute and unmute of the song
+           */
+           SongPlayer.toggleMute = function() {
+               if (currentBuzzObject) {
+                   currentBuzzObject.toggleMute();
+                   if (SongPlayer.isMuted==false) {SongPlayer.isMuted=true;} else {SongPlayer.isMuted=false;}
+               }
+           };
 
         return SongPlayer;
     }
